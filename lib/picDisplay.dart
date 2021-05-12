@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 
-class PicDisplay extends StatelessWidget {
+class PicDisplay extends StatefulWidget {
+  @override
+  _PicDisplayState createState() => _PicDisplayState();
+}
+
+class _PicDisplayState extends State<PicDisplay> {
+  final List<String> pics = [
+    'assets/Aseye.jpg',
+    'assets/Grace.jpg',
+    'assets/kay.jpg',
+    'assets/love.jpg'
+  ];
+
+  // final int index = 0;
+
+  // Function buildPicCard(BuildContext context, int index) {
+  //   ;
+  // }
+
   @override
   Widget build(BuildContext context) {
-    return ListView(children: [
-      Card(
+    return ListView.builder(
+      itemBuilder: (BuildContext context, int index) => Card(
         child: Column(
           children: [
-            Image.asset('assets/love.jpg'),
+            Image.asset(pics[index]),
             SizedBox(
               height: 10.0,
             ),
@@ -22,27 +40,7 @@ class PicDisplay extends StatelessWidget {
           ],
         ),
       ),
-      SizedBox(
-        height: 10,
-      ),
-      Card(
-        child: Column(
-          children: [
-            Image.asset('assets/Grace.jpg'),
-            SizedBox(
-              height: 10.0,
-            ),
-            Text('This is my love'),
-            TextField(
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Name',
-                  hintText: "Kelvin"),
-            )
-          ],
-        ),
-      ),
-    ]);
+      itemCount: pics.length,
+    );
   }
 }
